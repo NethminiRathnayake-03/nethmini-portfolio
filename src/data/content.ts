@@ -61,6 +61,14 @@ export const skills = [
     ],
   },
   {
+    group: "Enterprise Application Development",
+    items: [
+      "Role-based, multi-tenant systems with hierarchical access control (5–6 level org structures)",
+      "Configurable workflow / management systems",
+      "Appraisal-cycle automation for a real external client",
+    ],
+  },
+  {
     group: "Embedded & Hardware",
     items: ["Arduino Mega", "Custom PCB design (EasyEDA/JLC)", "Circuit debugging"],
   },
@@ -262,6 +270,7 @@ export const interests = [
   "UI/UX design",
   "Backend development",
   "Mobile app development",
+  "Enterprise development",
   "Quality assurance",
   "Business analysis",
   "Project management",

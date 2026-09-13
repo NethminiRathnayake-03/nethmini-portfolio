@@ -23,11 +23,11 @@ function LinkedinIcon() {
 }
 
 const toc = [
-  { label: "About me", num: "I" },
-  { label: "Skills", num: "II" },
-  { label: "Projects I've built", num: "III" },
-  { label: "Resume", num: "IV" },
-  { label: "Contact", num: "V" },
+  { label: "About me", num: "I", href: "#about" },
+  { label: "Skills", num: "II", href: "#skills" },
+  { label: "Projects I've built", num: "III", href: "#projects" },
+  { label: "Resume", num: "IV", href: "#resume" },
+  { label: "Contact", num: "V", href: "#contact" },
 ];
 
 export default function Hero() {
@@ -43,11 +43,13 @@ export default function Hero() {
           className="flex flex-row gap-6 border-b border-surface-2 pb-4 md:w-64 md:flex-col md:gap-5 md:border-b-0 md:border-r md:pb-0 md:pr-10"
         >
           {toc.map((t) => (
-            <li key={t.num} className="flex flex-col">
-              <span className="font-mono text-[10px] text-sage">{t.num}</span>
-              <span className="mt-1 whitespace-nowrap text-xs italic text-muted md:text-sm">
-                {t.label}
-              </span>
+            <li key={t.num}>
+              <a href={t.href} className="flex flex-col transition-colors hover:text-ink">
+                <span className="font-mono text-[10px] text-sage">{t.num}</span>
+                <span className="mt-1 whitespace-nowrap text-xs italic text-muted md:text-sm">
+                  {t.label}
+                </span>
+              </a>
             </li>
           ))}
         </motion.ul>
