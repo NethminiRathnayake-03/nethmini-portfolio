@@ -252,11 +252,13 @@ export const projects: Project[] = [
       "Self-hosted variable fonts (no external font requests) and a hand-built editorial color system",
       "Responsive from mobile through desktop, with a full-screen animated menu on small screens",
     ],
+    live: "https://nethmini-portfolio.vercel.app",
+    repo: "https://github.com/NethminiRathnayake-03/nethmini-portfolio",
   },
 ];
 
 export const extracurricular = [
-  "SPARK Competition — University of Moratuwa",
+  "SPARK Competition — Department of Electronic and Telecommunication Engineering, University of Moratuwa",
   "CodeRush Competition — University of Moratuwa",
   "Technical write-ups on architecture, trade-offs, and debugging",
   "Member, Rotaract Club",

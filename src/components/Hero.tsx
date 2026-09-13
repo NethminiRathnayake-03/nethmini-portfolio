@@ -55,11 +55,12 @@ export default function Hero() {
         </motion.ul>
 
         <div>
+          <p className="font-display text-sm italic text-sage">About me</p>
           <motion.p
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="font-mono text-[11px] tracking-wide text-muted"
+            className="mt-2 font-mono text-[11px] tracking-wide text-muted"
           >
             {profile.location.toUpperCase()} · OPEN TO INTERNSHIPS
           </motion.p>
