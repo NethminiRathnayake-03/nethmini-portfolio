@@ -231,30 +231,6 @@ export const projects: Project[] = [
     live: "https://nethzblog.42web.io",
     repo: "https://github.com/NethminiRathnayake-03/InkWell",
   },
-  {
-    year: "2026",
-    name: "Personal Portfolio Website",
-    role: "This site — Interactive Developer Portfolio",
-    type: "Individual project",
-    stack: "Next.js · TypeScript · Tailwind CSS · Framer Motion",
-    images: [
-      { src: "/photos/projects/portfolio/05-home.png" },
-      { src: "/photos/projects/portfolio/03-projects-top.png" },
-      { src: "/photos/projects/portfolio/02-projects.png" },
-      { src: "/photos/projects/portfolio/04-skills.png" },
-      { src: "/photos/projects/portfolio/01-resume.png" },
-    ],
-    description:
-      "A one-page, editorial-style portfolio built to showcase this exact body of work — designed and coded end to end, including its own interaction details.",
-    highlights: [
-      "Single-page scroll layout with a roman-numeral table of contents and smooth-scroll navigation",
-      "Custom fanned photo-stack galleries per project with a click-to-enlarge lightbox and keyboard navigation",
-      "Self-hosted variable fonts (no external font requests) and a hand-built editorial color system",
-      "Responsive from mobile through desktop, with a full-screen animated menu on small screens",
-    ],
-    live: "https://nethmini-portfolio.vercel.app",
-    repo: "https://github.com/NethminiRathnayake-03/nethmini-portfolio",
-  },
 ];
 
 export const extracurricular = [

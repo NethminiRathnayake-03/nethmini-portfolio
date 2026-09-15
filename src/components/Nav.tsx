@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 
 const links = [
   { href: "#about", label: "About me", num: "I" },
@@ -13,41 +13,79 @@ const links = [
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#about");
+
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 25 });
+
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.querySelector(l.href))
+      .filter((el): el is Element => !!el);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      <header className="fixed top-0 z-50 flex w-full items-center justify-between border-b border-surface-2 bg-bg/90 px-6 py-4 backdrop-blur-sm md:px-10">
-        <a
-          href="#about"
-          onClick={() => setOpen(false)}
-          className="font-mono text-[11px] tracking-wide text-muted"
-        >
-          NETHMINI RATHNAYAKE
-        </a>
-
-        <div className="flex items-center gap-4">
-          <nav className="hidden gap-3 font-mono text-[11px] text-muted md:flex">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} className="hover:text-ink">
-                {l.num}
-              </a>
-            ))}
-          </nav>
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Close menu" : "Open menu"}
-            aria-expanded={open}
-            className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+      <header className="fixed top-0 z-50 w-full border-b border-surface-2 bg-bg/90 backdrop-blur-sm">
+        <motion.div
+          className="h-[2px] origin-left bg-clay"
+          style={{ scaleX: progress }}
+        />
+        <div className="flex items-center justify-between px-6 py-4 md:px-10">
+          <a
+            href="#about"
+            onClick={() => setOpen(false)}
+            className="font-mono text-[11px] tracking-wide text-muted"
           >
-            <motion.span
-              animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
-              className="h-[1.5px] w-5 bg-ink"
-            />
-            <motion.span
-              animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
-              className="h-[1.5px] w-5 bg-ink"
-            />
-          </button>
+            NETHMINI RATHNAYAKE
+          </a>
+
+          <div className="flex items-center gap-4">
+            <nav className="hidden gap-3 font-mono text-[11px] md:flex">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className={
+                    active === l.href
+                      ? "text-clay"
+                      : "text-muted transition-colors hover:text-ink"
+                  }
+                >
+                  {l.num}
+                </a>
+              ))}
+            </nav>
+            <button
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              className="flex h-8 w-8 flex-col items-center justify-center gap-1.5 md:hidden"
+            >
+              <motion.span
+                animate={open ? { rotate: 45, y: 3.5 } : { rotate: 0, y: 0 }}
+                className="h-[1.5px] w-5 bg-ink"
+              />
+              <motion.span
+                animate={open ? { rotate: -45, y: -3.5 } : { rotate: 0, y: 0 }}
+                className="h-[1.5px] w-5 bg-ink"
+              />
+            </button>
+          </div>
         </div>
       </header>
 
@@ -71,7 +109,9 @@ export default function Nav() {
                   <a
                     href={l.href}
                     onClick={() => setOpen(false)}
-                    className="font-display text-4xl text-ink transition-colors hover:text-sage"
+                    className={`font-display text-4xl transition-colors ${
+                      active === l.href ? "text-clay" : "text-ink hover:text-sage"
+                    }`}
                   >
                     {l.num} — {l.label}
                   </a>

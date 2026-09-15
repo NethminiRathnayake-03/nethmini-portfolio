@@ -1,13 +1,28 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { education, extracurricular, interests, hopingToLearn, profile } from "@/data/content";
 import PhotoFrame from "@/components/PhotoFrame";
 
 export default function Resume() {
   return (
     <section id="resume" className="relative z-10 border-t border-surface-2 py-24">
-      <h2 className="font-display text-3xl italic text-ink md:text-4xl">
+      <motion.h2
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5 }}
+        className="font-display text-3xl italic text-ink md:text-4xl"
+      >
         Resume
-      </h2>
-      <p className="mt-4 text-lg leading-relaxed text-ink/90">
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5, delay: 0.1 }}
+        className="mt-4 text-lg leading-relaxed text-ink/90"
+      >
         I&apos;m an IT undergraduate who likes owning things end to end —
         schema to deployment, sensor to server. I&apos;m just as drawn to the
         human side of building things: creative problem-solving,{" "}
@@ -18,10 +33,15 @@ export default function Resume() {
         how systems fit together carries into hardware: I&apos;ve designed a
         custom PCB and sensor-driven circuit for an embedded project the
         same way I&apos;d design a database.
-      </p>
+      </motion.p>
 
       <div className="mt-16 grid gap-16 md:grid-cols-[0.9fr_1.6fr]">
-        <div>
+        <motion.div
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+        >
           <PhotoFrame src="/photos/nethmini-office.jpg" alt={`${profile.name} portrait`} />
           <a
             href="/resume.pdf"
@@ -30,9 +50,14 @@ export default function Resume() {
           >
             Download resume (PDF) ↓
           </a>
-        </div>
+        </motion.div>
 
-        <div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+        >
           <h3 className="font-mono text-xs text-sage">Education</h3>
           <div className="mt-6 space-y-8">
             {education.map((e) => (
@@ -96,7 +121,7 @@ export default function Resume() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
